@@ -1,0 +1,47 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="row">
+    <h2>Посты:</h2>
+    <div>
+        {% for post in posts_list %}
+        <a href="/post?id={{ post.id }}">
+            <div>
+                <h3>{{ post.title }}</h3>
+                <p> 
+                    {% if post.image.url != '' %}
+                        <img src="{{ post.image.url }}" height="100" width="100"/>
+                    {% endif %}
+                    {{ post.text }}
+                </p>
+            </div>
+        </a>
+        <p>{{ post.created_date }}</p>
+        
+        <br />
+        {% endfor %}
+
+        <div>
+
+            {% if posts_list.has_previous %}
+                <a href="/page/{{ posts_list.previous_page_number }}"><button class="btn btn-primary">&lt;</button></a>
+            {% endif %}
+
+            {% for item in pages_bar %}
+                {% if item != current_page and item != '...' %}
+                    <a href="/page/{{ item }}"><button class="btn btn-primary">{{ item }}</button></a>
+                {% else %}
+                    <button disabled class="btn btn-info">{{ item }}</button>
+                {% endif %}
+            {% endfor %}
+
+            {% if posts_list.has_next %}
+                    <a href="/page/{{ posts_list.next_page_number }}"><button class="btn btn-primary">&gt;</button></a>
+            {% endif %}
+
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}
