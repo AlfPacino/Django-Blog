@@ -53,9 +53,9 @@ def home(request):
             except:
                 do = 'nothing'
 
-    for post in posts_list:
-        if post.image == None:
-            print('oh shit')
+    #for post in posts_list:
+    #    if post.image == None:
+    #        print('oh shit')
 
     return render(
         request,

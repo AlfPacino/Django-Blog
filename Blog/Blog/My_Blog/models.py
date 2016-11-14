@@ -5,16 +5,18 @@ import os
 
 # Create your models here.
 
+
 def content_file_name(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'user_{0}/{1}'.format(instance.author, filename)
 
 _PATH = os.path.abspath(os.path.dirname(__file__))
 
+
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='Posts_Images', blank=True, null=True)
+    #image = models.ImageField(upload_to='Posts_Images', blank=True, null=True)
     text = models.TextField()
     files = models.FileField(upload_to='Files', blank=True, null=True)
 
